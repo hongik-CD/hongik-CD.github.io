@@ -1,10 +1,7 @@
-
-
-
 class Stage{
     constructor(pos){
-        this._x = 15;
-        this._y = 30;
+        this._x = 30;
+        this._y = 60;
         this._pos = pos;
         this.createStage();
     }
@@ -68,7 +65,7 @@ class Block{
             name : "",
             form : 0,
             down : 0,
-            left : 3,
+            left : 30,
             css : ""
         }
         this._tempMovingItem = {...this._movingItem}
@@ -86,39 +83,26 @@ class Block{
     resetBlock(){
         this._tempMovingItem = {...this._movingItem}
     }
-    updateBlock({form, left, down}){
+    updateBlock({form, left, down, name}){
         this._movingItem.down = down;
         this._movingItem.form = form;
         this._movingItem.left = left;
+        this._movingItem.name = name;
     }
     newBlock(){
-        // this._movingItem.name= 
-        //     this._names[Math.floor(Math.random()*this._len)]
-        this._movingItem.name = "box";
-
+        this._movingItem.name = "origin";
         this._movingItem.css = this._cssName[Math.floor(Math.random()*this._cssName.length)];
-        this._movingItem.left= 3;
+        this._movingItem.form= Math.floor(Math.random()*this._blocks.origin.length);
+        this._movingItem.left= 5;
         this._movingItem.down= 0;
-        this._movingItem.form= 0;
         this._tempMovingItem = {...this._movingItem};
     }
     setCss(key){
         return this._personCss[key];
     }
     getBlock(){
-        const {name, form, left, down} = this._tempMovingItem;
-
+        const {name, form} = this._tempMovingItem;
         return this._blocks[name][form];
-
-        Object.entries(block).reduce
-
-        return this._blocks[name][form]
-            .reduce((total, block)=>{
-                const x = block[0] + left;
-                const y = block[1] + down;
-                total.push([x,y])
-                return total;
-            },[]);
     }
     moveBlock(type, num){
         this._tempMovingItem[type] += num;
@@ -131,8 +115,22 @@ class Block{
         });
     }
     changeForm(){
-        if (this._tempMovingItem.form === 3) return;
-        this._tempMovingItem.form +=1;
+        const {name, form} = this._tempMovingItem;
+
+        if(name === "box" && form === 3){
+            this._tempMovingItem.form = 0;
+        }
+        else if(name === "origin"){
+            this._tempMovingItem.name = "half";
+            this._tempMovingItem.form = 0;
+        }
+        else if (name === "half"){
+            this._tempMovingItem.name = "box";
+            this._tempMovingItem.form = 0;
+        }
+        else{
+            this._tempMovingItem.form +=1;
+        }
     }
 }
 
@@ -176,7 +174,7 @@ class Score{
                 const pct = this._gravity - 0.01
                 this._gravity= pct;
             }else{
-                this._gravity = 0.2
+                this._gravity = 0.1
             }
             const num = Math.floor(this._weight * this._gravity);
             this._weight += num;
@@ -186,7 +184,7 @@ class Score{
         this._score += this._form[form];
         this._numOfPerson += 1;
         this.calcScore();
-        // this.get_log();
+        this.get_log();
     }
     calcScore(){
         this.applyGravity();
@@ -204,29 +202,6 @@ class Score{
         console.log("무게 :",this._weight);
         console.log("총점 :", this._score);
         console.log("");
-    }
-    testCacl(){
-        this.getTestScore({
-            origin : 9,
-            half : 1,
-            quater : 0,
-            box : 2,
-        });
-        this.getTestScore({
-            origin : 1,
-            half : 0,
-            quater : 0,
-            box : 24,
-        });
-    }
-    getTestScore(obj){
-        this.init();
-        Object.keys(obj)
-            .forEach(key=>{
-                for(let i =0; i<obj[key]; i++){
-                    this.updateScore(key)
-                }
-            });
     }
 }
 
@@ -262,6 +237,7 @@ class Game{
         this._weightInterval = setInterval(()=>{
             this._stage.deleteRow();
             this._score.looseWeight();
+            this.updateScoreElem();
         },this._weightDuration);
     }
     updateScoreElem(){
@@ -301,6 +277,7 @@ class Game{
                             clearInterval(this._downInterval);
                             clearInterval(this._weightInterval);
                             this.showNotice();
+                            return true;
                         }
                         setTimeout(()=>{
                             this.render("retry");
@@ -315,9 +292,13 @@ class Game{
                     }
                 });
         });
-        this._blocks.updateBlock({down,left,form});
+        this._blocks.updateBlock({name, down,left,form});
     }
     dropBlock(){
+        const {name, form, left, down} = 
+            this._blocks.getTempMovingBlock();
+        this._blocks.updateBlock({down,left,form});
+
         clearInterval(this._downInterval);
         this._downInterval = setInterval(()=>{
             this._blocks.moveBlock("down",1);
@@ -335,6 +316,8 @@ class Game{
         this.render();
     }
     showNotice(){
+        console.log(1)
+
         document.getElementById("notice")
             .classList.remove("dp-none");
     }
