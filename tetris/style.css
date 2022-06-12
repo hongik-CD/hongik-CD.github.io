@@ -3,6 +3,9 @@
   font-family: BM HANNA Air OTF;
 }
 
+html{
+  user-select: none;
+}
 *{
     margin:0;
     padding:0;
@@ -18,7 +21,6 @@ ul, li{
 }
 body{
   height: 100%;
-  user-select: none;
 }
 div {
   box-sizing: border-box;
@@ -45,6 +47,9 @@ div {
 }
 .font_25{
   font-size: 25px;
+}
+.font_36{
+  font-size: 36px;
 }
 .font-white{
   color: #fff;
@@ -82,8 +87,11 @@ div {
   left:0;
 }
 .notice{
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
   background-color: var(--greyOpacity40);
   z-index: 100;
 }
