@@ -18,7 +18,6 @@ ul, li{
 }
 body{
   height: 100%;
-  /* overflow: hidden; */
   user-select: none;
 }
 div {
@@ -30,9 +29,7 @@ div {
   --grey60: hsl(0, 0%, 60%);
   --grey80: hsl(0, 0%, 40%);
   --grey90: hsl(0, 0%, 20%);
-
 }
-
 
 .font-h{
   font-family: BM HANNA Air OTF;
@@ -123,9 +120,9 @@ div {
     display : flex;
 }
 .stage > ul > li >ul>li {
-    width: 5vw;
-    height : 5vw;
-    outline: 1px solid #ccc;
+    width: 1.3vh;
+    height : 1.3vh;
+    /* outline: 1px solid #ccc; */
 }
 .bg-gradient{
   background: linear-gradient(#ccc,#ccc 80%, #2c3e50);
