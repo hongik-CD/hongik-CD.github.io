@@ -125,10 +125,10 @@ div {
     /* outline: 1px solid #ccc; */
 }
 .bg-gradient{
-  background: linear-gradient(#ccc,#ccc 80%, #2c3e50);
+  background: linear-gradient(#ccc,#eff0f7 80%, #2c3e50);
 }
 .bg-gradient2{
-  background: linear-gradient(rgb(219, 219, 219),#bae5ec 20%,#bae5ec 85%, #fffb00);
+  background: linear-gradient(rgb(211, 211, 222),#bae5ec 20%,#bae5ec 85%, #fffb00);
   z-index: 5;
 }
 
