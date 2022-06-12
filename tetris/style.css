@@ -180,10 +180,10 @@ div {
   background-repeat: no-repeat;
   background-size: 50px;
 }
-.change:hover,
-.left:hover,
-.right:hover,
-.down:hover{
+.change:active,
+.left:active,
+.right:active,
+.down:active{
   filter: brightness(75%);
 }
 .change{
