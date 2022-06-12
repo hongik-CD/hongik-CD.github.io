@@ -1,0 +1,192 @@
+@font-face {
+  src: url("BMHANNAAir_otf.otf");
+  font-family: BM HANNA Air OTF;
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+button, input, ul{
+  all: unset;
+}
+ul, li{
+  list-style: none;
+}
+body{
+  height: 100%;
+  /* overflow: hidden; */
+}
+div {
+  box-sizing: border-box;
+}
+:root{
+  --greyOpacity40: rgba(0, 29, 54, 0.35);
+  --grey50: hsl(0, 0%, 70%);
+  --grey60: hsl(0, 0%, 60%);
+  --grey80: hsl(0, 0%, 40%);
+
+}
+
+
+.font-h{
+  font-family: BM HANNA Air OTF;
+}
+.font_20{
+  font-size: 1.3rem !important;
+}
+
+
+
+.flex{
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px;
+  
+}
+.flex-btwn{
+  justify-content: space-between;
+}
+.flex-column{
+  display: flex;
+  flex-flow: column wrap;
+  gap: 5px;
+}
+
+
+.stage{
+    border: 2px solid #333;
+    width: 300px;
+    margin:0 auto;
+}
+.stage > ul > li {
+    width:100%;
+    height:100%;
+}
+.stage > ul > li >ul {
+    display : flex;
+}
+.stage > ul > li >ul>li {
+    width: 30px;
+    height : 30px;
+    outline: 1px solid #ccc;
+
+}
+
+.notice,
+.ctrl{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left:0;
+}
+.notice{
+  display: grid;
+  place-items: center;
+  background-color: var(--greyOpacity40);
+  z-index: 100;
+}
+.ctrl{
+  justify-content: center;
+  padding: 2vw;
+  gap:10vh;
+  z-index: 80;
+
+}
+
+
+.score {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 2rem;
+}
+.a{
+  background-color: aqua;
+}
+.b{
+  background-color: green;
+}
+
+
+
+
+.btn-circle,
+.btn-rectangle{
+  border: 1px solid var(--grey50);
+  color: var(--grey50);
+  background-color:transparent;
+  user-select: none;
+  transition: 0.1s ease;
+  
+}
+.btn-circle{
+  width: 50px;
+  height: 50px;
+  border-radius: 26px;
+  overflow: hidden;
+  text-align: center;
+
+  display: grid;
+  place-items: center;
+}
+.btn-rectangle{
+  padding: 3px 10px;
+  border-radius: 8px;
+}
+
+.btn-circle:hover,
+.btn-rectangle:hover{
+  border: 1px solid var(--grey80);
+}
+.btn-select-black{
+  background-color: #000;
+  border: 1px solid #000;
+  color: #fff;
+}
+.btn-black{
+  border-color: var(--grey50);
+}
+
+
+
+
+
+.change,
+.left,
+.right,
+.down{
+  width: 50px;
+  height: 50px;
+
+  background-repeat: no-repeat;
+  background-size: 50px;
+}
+.change:hover,
+.left:hover,
+.right:hover,
+.down:hover{
+  filter: brightness(75%);
+}
+.change{
+  background-image: url(src/change.svg);
+}
+.left,
+.right,
+.down{
+  background-image: url(src/arrow.svg);
+}
+.left{
+  transform: rotate(180deg);
+}
+.down{
+  transform: rotate(90deg);
+}
+
+
+
+
+
+.dp-none{
+  display: none;
+}
