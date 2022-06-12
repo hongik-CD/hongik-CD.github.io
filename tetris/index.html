@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="style.css">
 
     <title>CD(1)_Project_2</title>
@@ -14,14 +15,31 @@
 </head>
 <body>
     <div id="wrap">
-        <div id ="notice" class="font-h notice">
-            <button id="game_start" class="font_20 btn-rectangle btn-select-black">START</button>
 
+
+
+        <div id ="notice" class="font-h notice">
+            <button id="game_start" class="font_25 btn-rectangle btn-select-black">START</button>
         </div>
-        <div id="score" class="font-h score">0</div>
+
+        <div id="score" class="font-h score">
+            <div class="font_16 flex flex-btwn">
+                <div>
+                    <span>Person : </span>
+                    <span id = "person">0</span>
+                </div>
+                <div>
+                    <span>Pressure : </span>
+                    <span id = "pressure">0</span>
+                </div>
+            </div>
+            <div id ="totalscore" class="font-white font-shade">0</div>
+        </div>
+
         <div class="stage">
             <ul></ul>
         </div>
+
         <div id="control" class="font_20 flex-column ctrl">
             <div class="flex flex-btwn">
                 <button class="down" value="Space"></button>
@@ -32,6 +50,11 @@
                 <button class="right" value="ArrowRight"></button>
             </div>
         </div>
+
+        <div class="bg-gradient2"></div>
+        <div class="bg-gradient"></div>
+        
+
     </div>
 </body>
 </html>
