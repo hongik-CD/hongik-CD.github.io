@@ -138,69 +138,75 @@ class Block{
 class Score{
     constructor(){
         this._score;
+        this._totalScore;
+
         this._weight;
+        this._pressure;
         this._gravity;
         this._numOfPerson;
 
         this._form = {
-            origin : 1000,
-            half : 1500,
-            quater : 1700,
-            box : 2000,
+            origin : 300,
+            half : 600,
+            box : 900,
         }
         // this.testCacl();
     }
     init(){
+        this._totalScore =0;
         this._score = 0;
         this._weight = 70;
         this._numOfPerson = 0;
-        this._gravity = 0.4;
+        this._gravity = 1.2;
+        this._pressure = 0;
     }
     getScore(){
         return{
             person : this._numOfPerson,
-            totalscore : this._score,
-            pressure : this._weight
+            totalscore : this._totalScore,
+            pressure : this._pressure,
+            endscore : this._totalScore,
         }
     }
     looseWeight(){
+        if (this._numOfPerson < 1) return;
+
         this._numOfPerson -= 1;
-        this.updateScore();
+        this.calcScore();
     }
     applyGravity(){
-        this._toalWeight = 0;
-        for(let i=0; i< this._numOfPerson; i ++){
-            if (i <= 10){
-                const pct = this._gravity - 0.01
-                this._gravity= pct;
-            }else{
-                this._gravity = 0.1
-            }
-            const num = Math.floor(this._weight * this._gravity);
-            this._weight += num;
+        this._pressure = 0;
+        for(let i=0; i < this._numOfPerson; i++){
+            const num = this._gravity*i
+            this._pressure += Math.floor(num*this._weight)
         }
     }
     updateScore(form){
         this._score += this._form[form];
         this._numOfPerson += 1;
         this.calcScore();
-        this.get_log();
     }
     calcScore(){
+        if (this._numOfPerson === 0) return 0;
         this.applyGravity();
-        this._score -= this._weight;
+        this._totalScore = this._score - this._pressure;
+        // this.get_log();
     }
     getScoreElem(){
         return {
             person : document.getElementById("person"),
             totalscore : document.getElementById("totalscore"),
-            pressure : document.getElementById("pressure")
+            pressure : document.getElementById("pressure"),
+            endscore : document.getElementById("endscore")
         }
     }
     get_log(){
         console.log("총인원 :",this._numOfPerson);
         console.log("무게 :",this._weight);
-        console.log("총점 :", this._score);
+        console.log("압박 :",this._pressure);
+        console.log("가중치 :",this._gravity);
+        console.log("점수 :", this._score);
+        console.log("총점 :", this._totalScore);
         console.log("");
     }
 }
@@ -216,7 +222,7 @@ class Game{
         this._duration = 500;
         this._downInterval;
         this._weightInterval;
-        this._weightDuration = 20000;
+        this._weightDuration = 25000;
 
         this._blocks= new Block(blocks);
     }
@@ -295,10 +301,6 @@ class Game{
         this._blocks.updateBlock({name, down,left,form});
     }
     dropBlock(){
-        const {name, form, left, down} = 
-            this._blocks.getTempMovingBlock();
-        this._blocks.updateBlock({down,left,form});
-
         clearInterval(this._downInterval);
         this._downInterval = setInterval(()=>{
             this._blocks.moveBlock("down",1);
@@ -316,8 +318,6 @@ class Game{
         this.render();
     }
     showNotice(){
-        console.log(1)
-
         document.getElementById("notice")
             .classList.remove("dp-none");
     }
@@ -368,11 +368,5 @@ class GameCtrl{
     }
 }
 
-
-
 const game = new Game(person_block);
 new GameCtrl(game);
-
-// game.run()
-
-
