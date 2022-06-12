@@ -99,6 +99,7 @@ div {
   justify-content: center;
   padding: 4vw;
   gap:10vh;
+  top:10vh;
   z-index: 80;
 }
 .score {
