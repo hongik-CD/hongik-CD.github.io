@@ -19,6 +19,7 @@ ul, li{
 body{
   height: 100%;
   /* overflow: hidden; */
+  user-select: none;
 }
 div {
   box-sizing: border-box;
@@ -28,6 +29,7 @@ div {
   --grey50: hsl(0, 0%, 70%);
   --grey60: hsl(0, 0%, 60%);
   --grey80: hsl(0, 0%, 40%);
+  --grey90: hsl(0, 0%, 20%);
 
 }
 
@@ -35,10 +37,24 @@ div {
 .font-h{
   font-family: BM HANNA Air OTF;
 }
+.font_14{
+  font-size: 14px;
+}
+.font_16{
+  font-size: 1rem;
+}
 .font_20{
   font-size: 1.3rem !important;
 }
-
+.font_25{
+  font-size: 25px;
+}
+.font-white{
+  color: #fff;
+}
+.font-shade{
+  text-shadow: 1px 1px 0px var(--grey80);
+}
 
 
 .flex{
@@ -56,26 +72,10 @@ div {
   gap: 5px;
 }
 
-
-.stage{
-    border: 2px solid #333;
-    width: 300px;
-    margin:0 auto;
-}
-.stage > ul > li {
-    width:100%;
-    height:100%;
-}
-.stage > ul > li >ul {
-    display : flex;
-}
-.stage > ul > li >ul>li {
-    width: 30px;
-    height : 30px;
-    outline: 1px solid #ccc;
-
-}
-
+.bg-gradient,
+.bg-gradient2,
+.stage,
+.score,
 .notice,
 .ctrl{
   position: fixed;
@@ -92,27 +92,48 @@ div {
 }
 .ctrl{
   justify-content: center;
-  padding: 2vw;
+  padding: 4vw;
   gap:10vh;
   z-index: 80;
-
 }
-
-
 .score {
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 2rem;
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 2rem;
+  z-index: 20;
 }
-.a{
-  background-color: aqua;
-}
-.b{
-  background-color: green;
+.score > div{
+  padding: 10vw;
 }
 
 
-
+.stage{
+  display: grid;
+  place-items: center;
+  z-index: 40;
+}
+.stage > ul{
+  border-bottom: 1rem solid #000;
+}
+.stage > ul > li {
+    width:100%;
+    height:100%;
+}
+.stage > ul > li >ul {
+    display : flex;
+}
+.stage > ul > li >ul>li {
+    width: 30px;
+    height : 30px;
+    /* outline: 1px solid #ccc; */
+}
+.bg-gradient{
+  background: linear-gradient(#ccc,#ccc 80%, #2c3e50);
+}
+.bg-gradient2{
+  background: linear-gradient(rgb(219, 219, 219),#bae5ec 20%,#bae5ec 85%, #fffb00);
+  z-index: 5;
+}
 
 .btn-circle,
 .btn-rectangle{
@@ -152,9 +173,6 @@ div {
 }
 
 
-
-
-
 .change,
 .left,
 .right,
@@ -188,6 +206,17 @@ div {
 
 
 
+
+
+
+
+
+.origin{
+  background-color: aqua;
+}
+.half{
+  background-color: green;
+}
 
 
 .dp-none{
