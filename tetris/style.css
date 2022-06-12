@@ -123,9 +123,9 @@ div {
     display : flex;
 }
 .stage > ul > li >ul>li {
-    width: 30px;
-    height : 30px;
-    /* outline: 1px solid #ccc; */
+    width: 5vw;
+    height : 5vw;
+    outline: 1px solid #ccc;
 }
 .bg-gradient{
   background: linear-gradient(#ccc,#ccc 80%, #2c3e50);
@@ -216,6 +216,47 @@ div {
 }
 .half{
   background-color: green;
+}
+
+
+.orange{
+  background-color: #ff6c00;
+}
+.blue{
+  background-color: #007eff;
+}
+.pink{
+  background-color: #ff2f58;
+}
+.green{
+  background-color: #4cff2f;
+}
+.purple{
+  background-color: #b71fff;
+}
+.salmon{
+  background-color: #ffb596;
+}
+.yellow{
+  background-color: #ffc924;
+}
+.indigo{
+  background-color: #2430ff;
+}
+
+
+
+.reddish{
+  background-color: #ffabac;
+}
+.pale{
+  background-color: #cfffff;
+}
+.dark{
+  background-color: #b291a1;
+}
+.light{
+  background-color: #fffeda;
 }
 
 
