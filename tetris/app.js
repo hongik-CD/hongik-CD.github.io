@@ -146,9 +146,9 @@ class Score{
         this._numOfPerson;
 
         this._form = {
-            origin : 300,
-            half : 600,
-            box : 900,
+            origin : 200,
+            half : 400,
+            box : 600,
         }
         // this.testCacl();
     }
