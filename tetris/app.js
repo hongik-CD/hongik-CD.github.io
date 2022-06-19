@@ -173,8 +173,8 @@ class Score{
         this._numOfPerson;
 
         this._form = {
-            origin : 300,
-            half : 600,
+            origin : 500,
+            half : 700,
             box : 900,
         }
     }
