@@ -7,6 +7,10 @@ class Stage{
         this._time;
         this._timeElem = document.getElementById("second")
         this._timeInterval;
+        this._bg = document.getElementById("bg")
+    }
+    changeBg(num){
+        this._bg.classList.toggle("bg-transition", num > 2000)
     }
     setTime(){
         this._time = 120;
@@ -173,7 +177,6 @@ class Score{
             half : 600,
             box : 900,
         }
-        // this.testCacl();
     }
     init(){
         this._totalScore =0;
@@ -272,6 +275,7 @@ class Game{
     }
     updateScoreElem(){
         const score = this._score.getScore();
+        this._stage.changeBg(score.totalscore);
         const scoreElem = this._score.getScoreElem();
         Object.keys(scoreElem)
             .forEach(key=> scoreElem[key].innerText = score[key]);
