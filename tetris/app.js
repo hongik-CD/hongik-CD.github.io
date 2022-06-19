@@ -4,6 +4,29 @@ class Stage{
         this._y = 60;
         this._pos = pos;
         this.createStage();
+        this._time;
+        this._timeElem = document.getElementById("second")
+        this._timeInterval;
+    }
+    setTime(){
+        this._time = 120;
+    }
+    getTime (){
+        return this._time;
+    }
+    countTime(){
+        this.setTime();
+        this._timeElem.innerText= this._time;
+        this.stopTime();
+
+        this._timeInterval = setInterval(()=>{
+            this._time -= 1;
+            this._timeElem.innerText = this._time;
+        },1000);
+    }
+    stopTime(){
+        clearInterval(this._timeInterval);
+        this.setTime();
     }
     createStage(){
         while (this._pos.firstChild) {
@@ -146,9 +169,9 @@ class Score{
         this._numOfPerson;
 
         this._form = {
-            origin : 200,
-            half : 400,
-            box : 600,
+            origin : 300,
+            half : 600,
+            box : 900,
         }
         // this.testCacl();
     }
@@ -231,6 +254,7 @@ class Game{
         this.updateScoreElem();
         this._stage.createStage();
         this.generateBlock();
+        this._stage.countTime();
         this.looseWeight();
     }
     isAvailable(target){
@@ -257,6 +281,9 @@ class Game{
         this.updateScoreElem();
     }
     render(type =""){
+        if (this._stage.getTime() === 0){
+            this.stopGame();
+        }
         const {name, form, left, down, css} = 
             this._blocks.getTempMovingBlock();
         const personCss = this._blocks.setCss(css);
@@ -280,9 +307,7 @@ class Game{
                     }else{
                         this._blocks.resetBlock();
                         if (type === "retry"){
-                            clearInterval(this._downInterval);
-                            clearInterval(this._weightInterval);
-                            this.showNotice();
+                            this.stopGame();
                             return true;
                         }
                         setTimeout(()=>{
@@ -299,6 +324,12 @@ class Game{
                 });
         });
         this._blocks.updateBlock({name, down,left,form});
+    }
+    stopGame(){
+        clearInterval(this._downInterval);
+        clearInterval(this._weightInterval);
+        this._stage.stopTime();
+        this.showNotice();
     }
     dropBlock(){
         clearInterval(this._downInterval);
